@@ -10,6 +10,7 @@ public class gameManagerScript : NetworkBehaviour {
 	public GameObject[] squadMembers = new GameObject[5];
 	public GameObject localPlayer;
 	public bool moveFlag = false;
+	public bool wallPlacementMode=false;
 	//public GameObject[] wallObjects = new GameObject[20];
 	// Use this for initialization
 	void Start () {

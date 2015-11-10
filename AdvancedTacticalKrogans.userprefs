@@ -1,14 +1,12 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\scripts\squadMemberScript.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\scripts\playerScript.cs">
     <Files>
-      <File FileName="Assets\scripts\enemyScript.cs" Line="10" Column="90" />
-      <File FileName="Assets\scripts\playerScript.cs" Line="48" Column="11" />
-      <File FileName="Assets\scripts\squadMemberScript.cs" Line="181" Column="73" />
-      <File FileName="Assets\scripts\gameManagerScript.cs" Line="6" Column="35" />
-      <File FileName="Assets\scripts\tileManager.cs" Line="23" Column="257" />
-      <File FileName="Assets\scripts\cloakButtonScript.cs" Line="17" Column="36" />
-      <File FileName="Assets\scripts\rotateScript.cs" Line="34" Column="11" />
+      <File FileName="Assets\scripts\wallButtonScript.cs" Line="21" Column="74" />
+      <File FileName="Assets\scripts\gameManagerScript.cs" Line="13" Column="38" />
+      <File FileName="Assets\scripts\playerScript.cs" Line="119" Column="37" />
+      <File FileName="Assets\scripts\tileManager.cs" Line="13" Column="18" />
+      <File FileName="Assets\scripts\wallScript.cs" Line="20" Column="24" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

@@ -5,6 +5,7 @@ public class playerScript : NetworkBehaviour {
 	[SyncVar]
 	public Vector2 enemyMovement;
 	public gameManagerScript gameManagerScriptRef ;
+	public GameObject wallPrefab;
 	// Use this for initialization
 	void Start () {
 		gameManagerScriptRef = GameObject.Find ("gameManager").GetComponent<gameManagerScript> ();
@@ -44,29 +45,29 @@ public class playerScript : NetworkBehaviour {
 		}
 	}
 
+	public void wallPlacement(Vector2 coords){
+		gameManagerScriptRef.wallPlacementMode = false;
+		GameObject.Find("wallButton").GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 1f);
+		gameManagerScriptRef.moveFlag = true;
+		CmdWallPlacement (coords);
 
+
+	}
 	[Command]
 	public void CmdMoveEnemy1(Vector2 coords, int SPI){
-//		enemyMovement = coords;
 		RpcUpdateEnemy (coords, SPI);
-
-
 	}
-
 	[Command]
 	public void CmdRotateEnemy(int angle, int SPI){
-		//		enemyMovement = coords;
 		RpcRotateEnemy (angle, SPI);
-		
-		
 	}
-
 	[Command]
 	public void CmdSetCloakEnemy(int SPI){
-
 		RpcSetCloakEnemy(SPI);
-		
-		
+	}
+	[Command]
+	public void CmdWallPlacement(Vector2 coords){
+		RpcWallPlacement (coords);
 	}
 
 	[ClientRpc]
@@ -111,5 +112,26 @@ public class playerScript : NetworkBehaviour {
 			}
 		}
 		gameManagerScriptRef.moveFlag = false;
+	}
+
+	[ClientRpc]
+	public void RpcWallPlacement(Vector2 coords){
+		if (!gameManagerScriptRef.moveFlag) {
+			if(gameManagerScriptRef.gridContents[(int) coords.x, (int) coords.y]==null)
+			{
+				gameManagerScriptRef.gridContents[(int) coords.x, (int) coords.y] = (GameObject) Instantiate (wallPrefab, new Vector3 (coords.x, coords.y, 0), Quaternion.identity);
+
+			}
+			else{
+				Destroy(gameManagerScriptRef.gridContents[(int) coords.x, (int) coords.y]);
+			}
+
+		}
+		if (gameManagerScriptRef.selectedPlayer != null) {
+			
+			gameManagerScriptRef.selectedPlayer.SendMessage ("checkOOB");
+		}
+		gameManagerScriptRef.moveFlag = false;
+
 	}
 }

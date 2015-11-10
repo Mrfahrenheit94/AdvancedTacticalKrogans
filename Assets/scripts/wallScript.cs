@@ -14,4 +14,13 @@ public class wallScript : MonoBehaviour {
 	void Update () {
 	
 	}
+
+	void OnMouseDown(){
+		if (gameManagerScript.wallPlacementMode) {
+			Destroy(gameObject);
+			gameManagerScript.localPlayer.SendMessage("wallPlacement", new Vector2(6-transform.position.x, 6-transform.position.y));
+		}
+
+
+	}
 }

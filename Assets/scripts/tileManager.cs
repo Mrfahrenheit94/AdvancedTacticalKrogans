@@ -3,6 +3,7 @@ using System.Collections;
 
 public class tileManager : MonoBehaviour {
 	public gameManagerScript gameManagerScriptRef;
+	public GameObject wallPrefab;
 	// Use this for initialization
 	void Start () {
 		gameManagerScriptRef = GameObject.Find ("gameManager").GetComponent<gameManagerScript> ();
@@ -12,6 +13,20 @@ public class tileManager : MonoBehaviour {
 	void Update () {
 	
 	}
+	void OnMouseDown(){
+		if (gameManagerScriptRef.wallPlacementMode) {
+			if (gameManagerScriptRef.gridContents [(int)transform.position.x, (int)transform.position.y] == null) {
+				gameManagerScriptRef.gridContents [(int)transform.position.x, (int)transform.position.y] = (GameObject) Instantiate (wallPrefab, new Vector3 (transform.position.x, transform.position.y, 0), Quaternion.identity);
+				gameManagerScriptRef.localPlayer.SendMessage("wallPlacement", new Vector2(6-transform.position.x, 6-transform.position.y));
+			} 
+			else if (gameManagerScriptRef.gridContents [(int)transform.position.x, (int)transform.position.y].tag == "wall") {
+				Destroy(gameManagerScriptRef.gridContents [(int)transform.position.x, (int)transform.position.y]);
+				gameManagerScriptRef.localPlayer.SendMessage("wallPlacement", new Vector2(6-transform.position.x, 6-transform.position.y));
+
+			}
+		}
+	}
+
 
 	void OnMouseOver(){
 
