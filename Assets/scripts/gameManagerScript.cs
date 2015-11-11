@@ -22,6 +22,9 @@ public class gameManagerScript : NetworkBehaviour {
 	public GameObject enemySensorPrefab;
 	public bool sensorPlacementMode = false;
 	public GameObject sensorPrefab;
+	public bool decoyPlacementMode = false;
+	public GameObject decoyPrefab;
+	public bool deathFlag = false;
 	//public GameObject[] wallObjects = new GameObject[20];
 	// Use this for initialization
 	void Start () {

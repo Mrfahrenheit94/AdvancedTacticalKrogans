@@ -61,6 +61,14 @@ public class playerScript : NetworkBehaviour {
 		gameManagerScriptRef.pingFlag = true;
 		CmdPingLocation (coords);
 	}
+	public void deadPlayer(Vector2 coords){
+		gameManagerScriptRef.deathFlag = true;
+		CmdDeadPlayer (coords);
+	}
+	[Command]
+	public void CmdDeadPlayer (Vector2 coords){
+		RpcDeadPlayer (coords);
+	}
 	[Command]
 	public void CmdTurretPlacement(Vector2 coords){
 		RpcTurretPlacement (coords);
@@ -85,7 +93,13 @@ public class playerScript : NetworkBehaviour {
 	public void CmdWallPlacement(Vector2 coords){
 		RpcWallPlacement (coords);
 	}
-
+	[ClientRpc]
+	public void RpcDeadPlayer (Vector2 coords){
+		if (!gameManagerScriptRef.deathFlag) {
+			Destroy(gameManagerScriptRef.gridContents[(int) coords.x, (int) coords.y]);
+		}
+		gameManagerScriptRef.deathFlag = false;
+	}
 	[ClientRpc]
 	public void RpcUpdateEnemy(Vector2 coords, int SPI){
 		if (!gameManagerScriptRef.moveFlag) {//if you weren't the one to move it

@@ -46,6 +46,8 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\scripts\cloakButtonScript.cs" />
+     <Compile Include="Assets\scripts\deathButtonScript.cs" />
+     <Compile Include="Assets\scripts\decoyButtonScript.cs" />
      <Compile Include="Assets\scripts\enemyScript.cs" />
      <Compile Include="Assets\scripts\friendlyTurretScript.cs" />
      <Compile Include="Assets\scripts\gameManagerScript.cs" />

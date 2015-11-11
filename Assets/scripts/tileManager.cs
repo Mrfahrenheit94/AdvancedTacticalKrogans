@@ -16,39 +16,36 @@ public class tileManager : MonoBehaviour {
 	void OnMouseDown(){
 		if (gameManagerScriptRef.wallPlacementMode) {
 			if (gameManagerScriptRef.gridContents [(int)transform.position.x, (int)transform.position.y] == null) {
-				gameManagerScriptRef.gridContents [(int)transform.position.x, (int)transform.position.y] = (GameObject) Instantiate (wallPrefab, new Vector3 (transform.position.x, transform.position.y, 0), Quaternion.identity);
-				gameManagerScriptRef.localPlayer.SendMessage("wallPlacement", new Vector2(6-transform.position.x, 6-transform.position.y));
-			} 
-
-
-			else if (gameManagerScriptRef.gridContents [(int)transform.position.x, (int)transform.position.y].tag == "wall") {
-				Destroy(gameManagerScriptRef.gridContents [(int)transform.position.x, (int)transform.position.y]);
-				gameManagerScriptRef.localPlayer.SendMessage("wallPlacement", new Vector2(6-transform.position.x, 6-transform.position.y));
+				gameManagerScriptRef.gridContents [(int)transform.position.x, (int)transform.position.y] = (GameObject)Instantiate (wallPrefab, new Vector3 (transform.position.x, transform.position.y, 0), Quaternion.identity);
+				gameManagerScriptRef.localPlayer.SendMessage ("wallPlacement", new Vector2 (6 - transform.position.x, 6 - transform.position.y));
+			} else if (gameManagerScriptRef.gridContents [(int)transform.position.x, (int)transform.position.y].tag == "wall") {
+				Destroy (gameManagerScriptRef.gridContents [(int)transform.position.x, (int)transform.position.y]);
+				gameManagerScriptRef.localPlayer.SendMessage ("wallPlacement", new Vector2 (6 - transform.position.x, 6 - transform.position.y));
 
 			}
-		}
-		else if (gameManagerScriptRef.pingLocationMode) {
-			Instantiate(gameManagerScriptRef.pingPrefab, new Vector3(transform.position.x, transform.position.y, 2), Quaternion.identity);
-			gameManagerScriptRef.localPlayer.SendMessage("pingLocation", new Vector2(6-transform.position.x, 6-transform.position.y));
-		}
-		else if (gameManagerScriptRef.turretPlacementMode) {
+		} else if (gameManagerScriptRef.pingLocationMode) {
+			Instantiate (gameManagerScriptRef.pingPrefab, new Vector3 (transform.position.x, transform.position.y, 2), Quaternion.identity);
+			gameManagerScriptRef.localPlayer.SendMessage ("pingLocation", new Vector2 (6 - transform.position.x, 6 - transform.position.y));
+		} else if (gameManagerScriptRef.turretPlacementMode) {
 			if (gameManagerScriptRef.gridContents [(int)transform.position.x, (int)transform.position.y] == null) {
-				gameManagerScriptRef.gridContents[(int) transform.position.x, (int) transform.position.y] = (GameObject) Instantiate(gameManagerScriptRef.friendlyTurretPrefab, new Vector3(transform.position.x, transform.position.y, 0), Quaternion.identity);
-			}
-			else if (gameManagerScriptRef.gridContents [(int)transform.position.x, (int)transform.position.y].tag == "turret") {
-				Destroy(gameManagerScriptRef.gridContents [(int)transform.position.x, (int)transform.position.y]);
+				gameManagerScriptRef.gridContents [(int)transform.position.x, (int)transform.position.y] = (GameObject)Instantiate (gameManagerScriptRef.friendlyTurretPrefab, new Vector3 (transform.position.x, transform.position.y, 0), Quaternion.identity);
+			} else if (gameManagerScriptRef.gridContents [(int)transform.position.x, (int)transform.position.y].tag == "turret") {
+				Destroy (gameManagerScriptRef.gridContents [(int)transform.position.x, (int)transform.position.y]);
 			}
 
-				gameManagerScriptRef.localPlayer.SendMessage("turretPlacement", new Vector2(6-transform.position.x, 6-transform.position.y));
-		}
-		else if (gameManagerScriptRef.sensorPlacementMode) {
+			gameManagerScriptRef.localPlayer.SendMessage ("turretPlacement", new Vector2 (6 - transform.position.x, 6 - transform.position.y));
+		} else if (gameManagerScriptRef.sensorPlacementMode) {
 			if (gameManagerScriptRef.gridContents [(int)transform.position.x, (int)transform.position.y] == null) {
-				gameManagerScriptRef.gridContents[(int) transform.position.x, (int) transform.position.y] = (GameObject) Instantiate(gameManagerScriptRef.sensorPrefab, new Vector3(transform.position.x, transform.position.y, 0), Quaternion.identity);
+				gameManagerScriptRef.gridContents [(int)transform.position.x, (int)transform.position.y] = (GameObject)Instantiate (gameManagerScriptRef.sensorPrefab, new Vector3 (transform.position.x, transform.position.y, 0), Quaternion.identity);
+			} else if (gameManagerScriptRef.gridContents [(int)transform.position.x, (int)transform.position.y].tag == "sensor") {
+				Destroy (gameManagerScriptRef.gridContents [(int)transform.position.x, (int)transform.position.y]);
 			}
-			else if (gameManagerScriptRef.gridContents [(int)transform.position.x, (int)transform.position.y].tag == "sensor") {
-				Destroy(gameManagerScriptRef.gridContents [(int)transform.position.x, (int)transform.position.y]);
+		} else if (gameManagerScriptRef.decoyPlacementMode) {
+			if (gameManagerScriptRef.gridContents [(int)transform.position.x, (int)transform.position.y]==null ) {
+				gameManagerScriptRef.gridContents [(int)transform.position.x, (int)transform.position.y] = (GameObject)Instantiate (gameManagerScriptRef.decoyPrefab, new Vector3 (transform.position.x, transform.position.y, 0), Quaternion.identity);
+			} else if (gameManagerScriptRef.gridContents [(int)transform.position.x, (int)transform.position.y].tag == "decoy") {
+				Destroy (gameManagerScriptRef.gridContents [(int)transform.position.x, (int)transform.position.y]);
 			}
-			
 
 		}
 	}

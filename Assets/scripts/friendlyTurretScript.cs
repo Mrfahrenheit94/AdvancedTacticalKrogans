@@ -16,6 +16,7 @@ public class friendlyTurretScript : MonoBehaviour {
 				fovY[i+(j*3)] = (int) transform.position.y+i-1;
 			}
 		}
+		updateTurret ();
 
 	}
 	
