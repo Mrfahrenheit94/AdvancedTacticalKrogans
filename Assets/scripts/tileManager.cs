@@ -41,6 +41,16 @@ public class tileManager : MonoBehaviour {
 
 				gameManagerScriptRef.localPlayer.SendMessage("turretPlacement", new Vector2(6-transform.position.x, 6-transform.position.y));
 		}
+		else if (gameManagerScriptRef.sensorPlacementMode) {
+			if (gameManagerScriptRef.gridContents [(int)transform.position.x, (int)transform.position.y] == null) {
+				gameManagerScriptRef.gridContents[(int) transform.position.x, (int) transform.position.y] = (GameObject) Instantiate(gameManagerScriptRef.sensorPrefab, new Vector3(transform.position.x, transform.position.y, 0), Quaternion.identity);
+			}
+			else if (gameManagerScriptRef.gridContents [(int)transform.position.x, (int)transform.position.y].tag == "sensor") {
+				Destroy(gameManagerScriptRef.gridContents [(int)transform.position.x, (int)transform.position.y]);
+			}
+			
+
+		}
 	}
 
 

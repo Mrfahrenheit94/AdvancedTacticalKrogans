@@ -18,6 +18,10 @@ public class gameManagerScript : NetworkBehaviour {
 	public GameObject friendlyTurretPrefab;
 	public GameObject enemyTurretPrefab;
 	public bool turretFlag = false;
+	public GameObject enemySymbolPrefab;
+	public GameObject enemySensorPrefab;
+	public bool sensorPlacementMode = false;
+	public GameObject sensorPrefab;
 	//public GameObject[] wallObjects = new GameObject[20];
 	// Use this for initialization
 	void Start () {

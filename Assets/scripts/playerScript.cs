@@ -98,6 +98,12 @@ public class playerScript : NetworkBehaviour {
 			
 			gameManagerScriptRef.selectedPlayer.SendMessage("checkOOB");
 		}
+		if (GameObject.FindWithTag ("turret") != null) {
+			GameObject.FindWithTag ("turret").SendMessage("updateTurret");
+		}
+		if (GameObject.FindWithTag ("sensor") != null) {
+			GameObject.FindWithTag ("sensor").SendMessage("updateTurret");
+		}
 		gameManagerScriptRef.moveFlag = false;
 
 	}
@@ -178,4 +184,5 @@ public class playerScript : NetworkBehaviour {
 		gameManagerScriptRef.turretFlag = false;
 		
 	}
+
 }
