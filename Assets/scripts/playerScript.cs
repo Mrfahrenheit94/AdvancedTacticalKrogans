@@ -50,8 +50,24 @@ public class playerScript : NetworkBehaviour {
 		GameObject.Find("wallButton").GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 1f);
 		gameManagerScriptRef.moveFlag = true;
 		CmdWallPlacement (coords);
+	}
 
+	public void turretPlacement(Vector2 coords){
+		gameManagerScriptRef.turretFlag = true;
+		CmdTurretPlacement (coords);
+	}
 
+	public void pingLocation (Vector2 coords){
+		gameManagerScriptRef.pingFlag = true;
+		CmdPingLocation (coords);
+	}
+	[Command]
+	public void CmdTurretPlacement(Vector2 coords){
+		RpcTurretPlacement (coords);
+	}
+	[Command]
+	public void CmdPingLocation(Vector2 coords){
+		RpcPingLocation (coords);
 	}
 	[Command]
 	public void CmdMoveEnemy1(Vector2 coords, int SPI){
@@ -85,7 +101,13 @@ public class playerScript : NetworkBehaviour {
 		gameManagerScriptRef.moveFlag = false;
 
 	}
-
+	[ClientRpc]
+	public void RpcPingLocation(Vector2 coords){
+		if (!gameManagerScriptRef.pingFlag) {
+			Instantiate(gameManagerScriptRef.pingPrefab, new Vector3 (coords.x, coords.y, 0), Quaternion.identity);
+		}
+		gameManagerScriptRef.pingFlag = false;
+	}
 	[ClientRpc]
 	public void RpcRotateEnemy(int angle, int SPI){
 		if (!gameManagerScriptRef.moveFlag) {//if you weren't the one to move it
@@ -103,7 +125,8 @@ public class playerScript : NetworkBehaviour {
 		if (!gameManagerScriptRef.moveFlag) {//if you weren't the one to move it
 			if (gameManagerScriptRef.enemies [SPI].tag == "wall") {
 				gameManagerScriptRef.enemies [SPI].tag = "cloaked";
-			} else {
+			} 
+			else {
 				gameManagerScriptRef.enemies [SPI].tag = "wall";
 			}
 			if (gameManagerScriptRef.selectedPlayer != null) {
@@ -133,5 +156,26 @@ public class playerScript : NetworkBehaviour {
 		}
 		gameManagerScriptRef.moveFlag = false;
 
+	}
+
+	[ClientRpc]
+	public void RpcTurretPlacement(Vector2 coords){
+		if (!gameManagerScriptRef.turretFlag) {
+			if(gameManagerScriptRef.gridContents[(int) coords.x, (int) coords.y]==null)
+			{
+				gameManagerScriptRef.gridContents[(int) coords.x, (int) coords.y] = (GameObject) Instantiate (gameManagerScriptRef.enemyTurretPrefab, new Vector3 (coords.x, coords.y, 0), Quaternion.identity);
+				
+			}
+			else{
+				Destroy(gameManagerScriptRef.gridContents[(int) coords.x, (int) coords.y]);
+			}
+			
+		}
+		if (gameManagerScriptRef.selectedPlayer != null) {
+			
+			gameManagerScriptRef.selectedPlayer.SendMessage ("checkOOB");
+		}
+		gameManagerScriptRef.turretFlag = false;
+		
 	}
 }

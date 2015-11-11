@@ -55,33 +55,39 @@ public class squadMemberScript : MonoBehaviour {
 	}
 
 	void OnMouseDown(){
-		if (gameManagerScript.selectedPlayer != null && gameManagerScript.selectedPlayer != gameObject) {
-			gameManagerScript.selectedPlayer.SendMessage ("hideAllVisibilityTiles");
-			gameManagerScript.selectedPlayer = gameObject;
-			for(int i=0;i<5;i++){
-				if(gameManagerScript.squadMembers[i] == gameObject){
-					gameManagerScript.selectedPlayerIndex = i;
-					break;
-				}
-			}
-			checkOOB ();
-		} 
-		else if (gameManagerScript.selectedPlayer == gameObject) {
-			hideAllVisibilityTiles();
-			hideAllWalls();
-			gameManagerScript.selectedPlayer=null;
-		}
-		else {
-			gameManagerScript.selectedPlayer = gameObject;
-			for(int i=0;i<5;i++){
-				if(gameManagerScript.squadMembers[i] == gameObject){
-					gameManagerScript.selectedPlayerIndex = i;
-					break;
-				}
-			}
-			checkOOB ();
 
+		if (gameManagerScript.pingLocationMode) {
+			Instantiate (gameManagerScript.pingPrefab, new Vector3 (transform.position.x, transform.position.y, 2), Quaternion.identity);
+			gameManagerScript.localPlayer.SendMessage("pingLocation", new Vector2(6-transform.position.x, 6-transform.position.y));
 		}
+
+			if (gameManagerScript.selectedPlayer != null && gameManagerScript.selectedPlayer != gameObject) {
+				gameManagerScript.selectedPlayer.SendMessage ("hideAllVisibilityTiles");
+				gameManagerScript.selectedPlayer = gameObject;
+				for (int i=0; i<5; i++) {
+					if (gameManagerScript.squadMembers [i] == gameObject) {
+						gameManagerScript.selectedPlayerIndex = i;
+						break;
+					}
+				}
+				checkOOB ();
+			} else if (gameManagerScript.selectedPlayer == gameObject) {
+				hideAllVisibilityTiles ();
+				hideAllWalls ();
+				gameManagerScript.selectedPlayer = null;
+			} else {
+				gameManagerScript.selectedPlayer = gameObject;
+				for (int i=0; i<5; i++) {
+					if (gameManagerScript.squadMembers [i] == gameObject) {
+						gameManagerScript.selectedPlayerIndex = i;
+						break;
+					}
+				}
+
+				checkOOB ();
+
+			}
+		
 	}
 
 	void updateFOVUp(){

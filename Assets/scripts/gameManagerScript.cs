@@ -11,6 +11,13 @@ public class gameManagerScript : NetworkBehaviour {
 	public GameObject localPlayer;
 	public bool moveFlag = false;
 	public bool wallPlacementMode=false;
+	public bool pingLocationMode=false;
+	public bool turretPlacementMode=false;
+	public bool pingFlag=false;
+	public GameObject pingPrefab;
+	public GameObject friendlyTurretPrefab;
+	public GameObject enemyTurretPrefab;
+	public bool turretFlag = false;
 	//public GameObject[] wallObjects = new GameObject[20];
 	// Use this for initialization
 	void Start () {

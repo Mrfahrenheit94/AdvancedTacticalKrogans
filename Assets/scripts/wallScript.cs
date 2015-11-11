@@ -20,6 +20,10 @@ public class wallScript : MonoBehaviour {
 			Destroy(gameObject);
 			gameManagerScript.localPlayer.SendMessage("wallPlacement", new Vector2(6-transform.position.x, 6-transform.position.y));
 		}
+		else if (gameManagerScript.pingLocationMode) {
+			Instantiate(gameManagerScript.pingPrefab, new Vector3(transform.position.x, transform.position.y, -2), Quaternion.identity);
+			gameManagerScript.localPlayer.SendMessage("pingLocation", new Vector2(6-transform.position.x, 6-transform.position.y));
+		}
 
 
 	}

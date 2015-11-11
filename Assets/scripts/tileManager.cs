@@ -19,11 +19,27 @@ public class tileManager : MonoBehaviour {
 				gameManagerScriptRef.gridContents [(int)transform.position.x, (int)transform.position.y] = (GameObject) Instantiate (wallPrefab, new Vector3 (transform.position.x, transform.position.y, 0), Quaternion.identity);
 				gameManagerScriptRef.localPlayer.SendMessage("wallPlacement", new Vector2(6-transform.position.x, 6-transform.position.y));
 			} 
+
+
 			else if (gameManagerScriptRef.gridContents [(int)transform.position.x, (int)transform.position.y].tag == "wall") {
 				Destroy(gameManagerScriptRef.gridContents [(int)transform.position.x, (int)transform.position.y]);
 				gameManagerScriptRef.localPlayer.SendMessage("wallPlacement", new Vector2(6-transform.position.x, 6-transform.position.y));
 
 			}
+		}
+		else if (gameManagerScriptRef.pingLocationMode) {
+			Instantiate(gameManagerScriptRef.pingPrefab, new Vector3(transform.position.x, transform.position.y, 2), Quaternion.identity);
+			gameManagerScriptRef.localPlayer.SendMessage("pingLocation", new Vector2(6-transform.position.x, 6-transform.position.y));
+		}
+		else if (gameManagerScriptRef.turretPlacementMode) {
+			if (gameManagerScriptRef.gridContents [(int)transform.position.x, (int)transform.position.y] == null) {
+				gameManagerScriptRef.gridContents[(int) transform.position.x, (int) transform.position.y] = (GameObject) Instantiate(gameManagerScriptRef.friendlyTurretPrefab, new Vector3(transform.position.x, transform.position.y, 0), Quaternion.identity);
+			}
+			else if (gameManagerScriptRef.gridContents [(int)transform.position.x, (int)transform.position.y].tag == "turret") {
+				Destroy(gameManagerScriptRef.gridContents [(int)transform.position.x, (int)transform.position.y]);
+			}
+
+				gameManagerScriptRef.localPlayer.SendMessage("turretPlacement", new Vector2(6-transform.position.x, 6-transform.position.y));
 		}
 	}
 
