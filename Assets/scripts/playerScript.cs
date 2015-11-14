@@ -69,6 +69,21 @@ public class playerScript : NetworkBehaviour {
 		gameManagerScriptRef.decoyFlag = true;
 		CmdDecoyPlacement (coords);
 	}
+	public void attackTilePlacement(Vector2 coords){
+		gameManagerScriptRef.attackTileFlag = true;
+		CmdAttackTilePlacement(coords);
+	}
+	public void deleteAttackTiles(){
+		CmdDeleteAttackTiles ();
+	}
+	[Command]
+	public void CmdDeleteAttackTiles(){
+		RpcDeleteAttackTiles ();
+	}
+	[Command]
+	public void CmdAttackTilePlacement(Vector2 coords){
+		RpcAttackTilePlacement (coords);
+	}
 	[Command]
 	public void CmdDecoyPlacement (Vector2 coords){
 		RpcDecoyPlacement (coords, "hello");
@@ -107,6 +122,20 @@ public class playerScript : NetworkBehaviour {
 			Destroy(gameManagerScriptRef.gridContents[(int) coords.x, (int) coords.y]);
 		}
 		gameManagerScriptRef.deathFlag = false;
+	}
+	[ClientRpc]
+	public void RpcAttackTilePlacement (Vector2 coords){
+		if (!gameManagerScriptRef.attackTileFlag) {
+
+				Instantiate(gameManagerScriptRef.attackTilePrefab, new Vector3(coords.x ,coords.y, 0), Quaternion.identity);
+
+		}
+		gameManagerScriptRef.attackTileFlag = false;
+	}
+	[ClientRpc]
+	public void RpcDeleteAttackTiles (){
+		foreach(GameObject attackTiles in GameObject.FindGameObjectsWithTag("attackTile"))
+			Destroy(attackTiles);
 	}
 	[ClientRpc]
 	public void RpcUpdateEnemy(Vector2 coords, int SPI){

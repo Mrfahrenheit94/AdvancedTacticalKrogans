@@ -3,14 +3,14 @@ using System.Collections;
 
 public class enemyScript : MonoBehaviour {
 
-	public gameManagerScript gameManagerScript;
+	public gameManagerScript gameManagerScriptRef;
 	// Use this for initialization
 	void Start () {
 		
-		gameManagerScript = GameObject.Find ("gameManager").GetComponent<gameManagerScript> ();
-		gameManagerScript.gridContents [(int)gameObject.transform.position.x,(int)gameObject.transform.position.y] = gameObject;
+		gameManagerScriptRef = GameObject.Find ("gameManager").GetComponent<gameManagerScript> ();
+		gameManagerScriptRef.gridContents [(int)gameObject.transform.position.x,(int)gameObject.transform.position.y] = gameObject;
 
-		gameManagerScript.enemies[4-(int)transform.position.x]=gameObject;
+		gameManagerScriptRef.enemies[4-(int)transform.position.x]=gameObject;
 			
 			
 
@@ -20,4 +20,16 @@ public class enemyScript : MonoBehaviour {
 	void Update () {
 	
 	}
+/*
+	void OnMouseDown(){
+		if (gameManagerScriptRef.attackTilePlacementMode) {
+			if (gameManagerScriptRef.gridContents [(int)transform.position.x, (int)transform.position.y] == null) {
+				//gameManagerScriptRef.gridContents [(int)transform.position.x, (int)transform.position.y] = (GameObject)
+				Instantiate (gameManagerScriptRef.attackTilePrefab, new Vector3 (transform.position.x, transform.position.y, 0), Quaternion.identity);
+				//gameManagerScriptRef.gridContents [(int)transform.position.x, (int)transform.position.y].tag = "decoy";
+				gameManagerScriptRef.localPlayer.SendMessage ("attackTilePlacement", new Vector2 (6 - transform.position.x, 6 - transform.position.y));
+			} 
+		}
+	}
+	*/
 }

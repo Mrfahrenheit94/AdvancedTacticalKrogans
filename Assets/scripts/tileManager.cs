@@ -53,11 +53,22 @@ public class tileManager : MonoBehaviour {
 				GameObject[] decoyPrefab = GameObject.FindGameObjectsWithTag("player");
 				gameManagerScriptRef.gridContents [(int)transform.position.x, (int)transform.position.y] = (GameObject)Instantiate (decoyPrefab[Random.Range(0, decoyPrefab.Length)], new Vector3 (transform.position.x, transform.position.y, 0), Quaternion.identity);
 				gameManagerScriptRef.gridContents [(int)transform.position.x, (int)transform.position.y].tag = "decoy";
-				gameManagerScriptRef.localPlayer.SendMessage("decoyPlacement", new Vector2 (6 - transform.position.x, 6 - transform.position.y));
+				gameManagerScriptRef.localPlayer.SendMessage("decoyPlacement", gameManagerScriptRef.gridContents [(int)transform.position.x, (int)transform.position.y]);
 			} else if (gameManagerScriptRef.gridContents [(int)transform.position.x, (int)transform.position.y].tag == "decoy") {
 				Destroy (gameManagerScriptRef.gridContents [(int)transform.position.x, (int)transform.position.y]);
 			}
+			
+		}
 
+		else if (gameManagerScriptRef.attackTilePlacementMode) {
+			//if (gameManagerScriptRef.gridContents [(int)transform.position.x, (int)transform.position.y]==null ) {
+				//gameManagerScriptRef.gridContents [(int)transform.position.x, (int)transform.position.y] = (GameObject)
+				Instantiate (gameManagerScriptRef.attackTilePrefab, new Vector3 (transform.position.x, transform.position.y, 0), Quaternion.identity);
+				//gameManagerScriptRef.gridContents [(int)transform.position.x, (int)transform.position.y].tag = "decoy";	
+			if(gameManagerScriptRef.gridContents[(int)transform.position.x,(int) transform.position.y].name =="enemyShotgun" || gameManagerScriptRef.gridContents[(int)transform.position.x,(int) transform.position.y].name =="enemyAssault" || gameManagerScriptRef.gridContents[(int)transform.position.x,(int) transform.position.y].name =="enemySniper"){ 
+
+				gameManagerScriptRef.localPlayer.SendMessage("attackTilePlacement", new Vector2 (6-transform.position.x, 6-transform.position.y));
+			} 
 		}
 	}
 

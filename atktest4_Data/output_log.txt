@@ -14,16 +14,66 @@ Platform assembly: C:\Users\TJW\Documents\ATK\AdvancedTacticalKrogans\atktest4_D
 Loading C:\Users\TJW\Documents\ATK\AdvancedTacticalKrogans\atktest4_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
 Platform assembly: C:\Users\TJW\Documents\ATK\AdvancedTacticalKrogans\atktest4_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
 Loading C:\Users\TJW\Documents\ATK\AdvancedTacticalKrogans\atktest4_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
-Platform assembly: C:\Users\TJW\Documents\ATK\AdvancedTacticalKrogans\atktest4_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
-Loading C:\Users\TJW\Documents\ATK\AdvancedTacticalKrogans\atktest4_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
-Platform assembly: C:\Users\TJW\Documents\ATK\AdvancedTacticalKrogans\atktest4_Data\Managed\UnityEngine.UI.dll (this message is harmless)
-Loading C:\Users\TJW\Documents\ATK\AdvancedTacticalKrogans\atktest4_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
 Platform assembly: C:\Users\TJW\Documents\ATK\AdvancedTacticalKrogans\atktest4_Data\Managed\System.Core.dll (this message is harmless)
-- Completed reload, in  0.204 seconds
+- Completed reload, in  0.160 seconds
 desktop: 3200x1800 60Hz; virtual: 3200x1800 at 0,0
 <RI> Initializing input.
 <RI> Input initialized.
 <RI> Initialized touch support.
 Platform assembly: C:\Users\TJW\Documents\ATK\AdvancedTacticalKrogans\atktest4_Data\Managed\System.dll (this message is harmless)
 Setting up 1 worker threads for Enlighten.
-  Thread -> id: 1e4c -> priority: 1 
+  Thread -> id: a9c -> priority: 1 
+NullReferenceException: Object reference not set to an instance of an object
+  at tileManager.OnMouseDown () [0x00000] in <filename unknown>:0 
+UnityEngine.GameObject:SendMessage(String, Object, SendMessageOptions)
+UnityEngine.HitInfo:SendMessage(String)
+UnityEngine.SendMouseEvents:SendEvents(Int32, HitInfo)
+UnityEngine.SendMouseEvents:DoSendMouseEvents(Int32)
+ 
+(Filename:  Line: -1)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at tileManager.OnMouseDown () [0x00000] in <filename unknown>:0 
+UnityEngine.GameObject:SendMessage(String, Object, SendMessageOptions)
+UnityEngine.HitInfo:SendMessage(String)
+UnityEngine.SendMouseEvents:SendEvents(Int32, HitInfo)
+UnityEngine.SendMouseEvents:DoSendMouseEvents(Int32)
+ 
+(Filename:  Line: -1)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at tileManager.OnMouseDown () [0x00000] in <filename unknown>:0 
+UnityEngine.GameObject:SendMessage(String, Object, SendMessageOptions)
+UnityEngine.HitInfo:SendMessage(String)
+UnityEngine.SendMouseEvents:SendEvents(Int32, HitInfo)
+UnityEngine.SendMouseEvents:DoSendMouseEvents(Int32)
+ 
+(Filename:  Line: -1)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at tileManager.OnMouseDown () [0x00000] in <filename unknown>:0 
+UnityEngine.GameObject:SendMessage(String, Object, SendMessageOptions)
+UnityEngine.HitInfo:SendMessage(String)
+UnityEngine.SendMouseEvents:SendEvents(Int32, HitInfo)
+UnityEngine.SendMouseEvents:DoSendMouseEvents(Int32)
+ 
+(Filename:  Line: -1)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at tileManager.OnMouseDown () [0x00000] in <filename unknown>:0 
+UnityEngine.GameObject:SendMessage(String, Object, SendMessageOptions)
+UnityEngine.HitInfo:SendMessage(String)
+UnityEngine.SendMouseEvents:SendEvents(Int32, HitInfo)
+UnityEngine.SendMouseEvents:DoSendMouseEvents(Int32)
+ 
+(Filename:  Line: -1)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at tileManager.OnMouseDown () [0x00000] in <filename unknown>:0 
+UnityEngine.GameObject:SendMessage(String, Object, SendMessageOptions)
+UnityEngine.HitInfo:SendMessage(String)
+UnityEngine.SendMouseEvents:SendEvents(Int32, HitInfo)
+UnityEngine.SendMouseEvents:DoSendMouseEvents(Int32)
+ 
+(Filename:  Line: -1)
+
