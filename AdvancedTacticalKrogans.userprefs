@@ -1,17 +1,8 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\scripts\friendlyTurretScript.cs">
+  <MonoDevelop.Ide.Workspace />
+  <MonoDevelop.Ide.Workbench ActiveDocument="..\..\GitHub\abandoned\abandoned\Assets\Scripts\Hostiles\hostileObject.cs">
     <Files>
-      <File FileName="Assets\scripts\deathButtonScript.cs" Line="21" Column="46" />
-      <File FileName="Assets\scripts\gameManagerScript.cs" Line="27" Column="32" />
-      <File FileName="Assets\scripts\tileManager.cs" Line="46" Column="117" />
-      <File FileName="Assets\scripts\wallButtonScript.cs" Line="1" Column="1" />
-      <File FileName="Assets\scripts\wallScript.cs" Line="1" Column="1" />
-      <File FileName="Assets\scripts\visibilityTestScript.cs" Line="1" Column="1" />
-      <File FileName="Assets\scripts\playerScript.cs" Line="97" Column="24" />
-      <File FileName="Assets\scripts\turretButtonScript.cs" Line="1" Column="1" />
-      <File FileName="Assets\scripts\motionSensorButtonScript.cs" Line="1" Column="1" />
-      <File FileName="Assets\scripts\friendlyTurretScript.cs" Line="19" Column="19" />
+      <File FileName="..\..\GitHub\abandoned\abandoned\Assets\Scripts\Hostiles\hostileObject.cs" Line="34" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
