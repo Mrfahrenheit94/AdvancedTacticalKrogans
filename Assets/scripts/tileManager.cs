@@ -30,6 +30,10 @@ public class tileManager : MonoBehaviour {
 			if (gameManagerScriptRef.gridContents [(int)transform.position.x, (int)transform.position.y] == null) {
 				gameManagerScriptRef.gridContents [(int)transform.position.x, (int)transform.position.y] = (GameObject)Instantiate (gameManagerScriptRef.friendlyTurretPrefab, new Vector3 (transform.position.x, transform.position.y, 0), Quaternion.identity);
 			} else if (gameManagerScriptRef.gridContents [(int)transform.position.x, (int)transform.position.y].tag == "turret") {
+				for(int i=0;i<9;i++){
+					if(gameManagerScriptRef.gridContents [(int)transform.position.x, (int)transform.position.y].GetComponent<friendlyTurretScript>().turretEnemies[i]!=null)
+						Destroy(gameManagerScriptRef.gridContents [(int)transform.position.x, (int)transform.position.y].GetComponent<friendlyTurretScript>().turretEnemies[i]);
+				}//GET RID OF RED DOTS
 				Destroy (gameManagerScriptRef.gridContents [(int)transform.position.x, (int)transform.position.y]);
 			}
 
@@ -38,11 +42,18 @@ public class tileManager : MonoBehaviour {
 			if (gameManagerScriptRef.gridContents [(int)transform.position.x, (int)transform.position.y] == null) {
 				gameManagerScriptRef.gridContents [(int)transform.position.x, (int)transform.position.y] = (GameObject)Instantiate (gameManagerScriptRef.sensorPrefab, new Vector3 (transform.position.x, transform.position.y, 0), Quaternion.identity);
 			} else if (gameManagerScriptRef.gridContents [(int)transform.position.x, (int)transform.position.y].tag == "sensor") {
+				for(int i=0;i<9;i++){
+					if(gameManagerScriptRef.gridContents [(int)transform.position.x, (int)transform.position.y].GetComponent<friendlyTurretScript>().turretEnemies[i]!=null)
+						Destroy(gameManagerScriptRef.gridContents [(int)transform.position.x, (int)transform.position.y].GetComponent<friendlyTurretScript>().turretEnemies[i]);
+				}
 				Destroy (gameManagerScriptRef.gridContents [(int)transform.position.x, (int)transform.position.y]);
 			}
 		} else if (gameManagerScriptRef.decoyPlacementMode) {
 			if (gameManagerScriptRef.gridContents [(int)transform.position.x, (int)transform.position.y]==null ) {
-				gameManagerScriptRef.gridContents [(int)transform.position.x, (int)transform.position.y] = (GameObject)Instantiate (gameManagerScriptRef.decoyPrefab, new Vector3 (transform.position.x, transform.position.y, 0), Quaternion.identity);
+				GameObject[] decoyPrefab = GameObject.FindGameObjectsWithTag("player");
+				gameManagerScriptRef.gridContents [(int)transform.position.x, (int)transform.position.y] = (GameObject)Instantiate (decoyPrefab[Random.Range(0, decoyPrefab.Length)], new Vector3 (transform.position.x, transform.position.y, 0), Quaternion.identity);
+				gameManagerScriptRef.gridContents [(int)transform.position.x, (int)transform.position.y].tag = "decoy";
+				gameManagerScriptRef.localPlayer.SendMessage("decoyPlacement", new Vector2 (6 - transform.position.x, 6 - transform.position.y));
 			} else if (gameManagerScriptRef.gridContents [(int)transform.position.x, (int)transform.position.y].tag == "decoy") {
 				Destroy (gameManagerScriptRef.gridContents [(int)transform.position.x, (int)transform.position.y]);
 			}

@@ -18,6 +18,7 @@ public class deathButtonScript : MonoBehaviour {
 	void OnMouseDown(){
 		if (gameManagerScript.selectedPlayer != null){
 			gameManagerScript.localPlayer.SendMessage("deadPlayer", new Vector2(6-gameManagerScript.selectedPlayer.transform.position.x, 6-gameManagerScript.selectedPlayer.transform.position.y));
+
 			Destroy(gameManagerScript.selectedPlayer);
 		} 
 	}

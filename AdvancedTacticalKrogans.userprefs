@@ -1,8 +1,15 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace />
-  <MonoDevelop.Ide.Workbench ActiveDocument="..\..\GitHub\abandoned\abandoned\Assets\Scripts\Hostiles\hostileObject.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\scripts\decoyButtonScript.cs">
     <Files>
-      <File FileName="..\..\GitHub\abandoned\abandoned\Assets\Scripts\Hostiles\hostileObject.cs" Line="34" Column="1" />
+      <File FileName="Assets\scripts\tileManager.cs" Line="55" Column="108" />
+      <File FileName="Assets\scripts\friendlyTurretScript.cs" Line="16" Column="52" />
+      <File FileName="Assets\scripts\decoyButtonScript.cs" Line="27" Column="4" />
+      <File FileName="Assets\scripts\squadMemberScript.cs" Line="215" Column="7" />
+      <File FileName="Assets\scripts\deathButtonScript.cs" Line="21" Column="4" />
+      <File FileName="Assets\scripts\gameManagerScript.cs" Line="29" Column="52" />
+      <File FileName="Assets\scripts\playerScript.cs" Line="74" Column="37" />
+      <File FileName="Assets\scripts\turretButtonScript.cs" Line="23" Column="5" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

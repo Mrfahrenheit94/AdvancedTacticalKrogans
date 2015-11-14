@@ -13,7 +13,7 @@ public class squadMemberScript : MonoBehaviour {
 		hideAllWalls ();
 		//fov [0] = new Vector2 (2, 2);
 		gameManagerScript = GameObject.Find ("gameManager").GetComponent<gameManagerScript> ();
-		gameManagerScript.gridContents [(int)gameObject.transform.position.x, (int)gameObject.transform.position.y] = gameObject;
+		//gameManagerScript.gridContents [(int)gameObject.transform.position.x, (int)gameObject.transform.position.y] = gameObject;
 
 		gameManagerScript.squadMembers[(int)transform.position.x-2]=gameObject;
 
@@ -70,6 +70,7 @@ public class squadMemberScript : MonoBehaviour {
 						break;
 					}
 				}
+
 				checkOOB ();
 			} else if (gameManagerScript.selectedPlayer == gameObject) {
 				hideAllVisibilityTiles ();
@@ -179,17 +180,19 @@ public class squadMemberScript : MonoBehaviour {
 	}
 
 	public void checkOOB(){
+
 		hideAllWalls ();
+
 		for (int i=0; i<22; i++) {
 			if (visibleTiles [i].transform.position.x > 6 || visibleTiles[i].transform.position.x < -0.1f || visibleTiles[i].transform.position.y > 6 || visibleTiles[i].transform.position.y < -0.1f) {
 				visibleTiles[i].GetComponent<SpriteRenderer> ().color = new Color (1f, 1f, 1f, 0f);
 			} else
 				visibleTiles[i].GetComponent<SpriteRenderer> ().color = new Color (1f, 1f, 1f, 1f);
 		}
-
+		
 		for (int i=0; i<22; i++) {
 			if(validTile(i)){//if it's in the range of the board size
-
+				
 				GameObject objectInTile = gameManagerScript.gridContents[fovX[i], fovY[i]];
 				if(objectInTile != null && objectInTile.tag == "wall"){//if it's a wall, check to see if you see it
 					//Debug.Log((int)visibleTiles[i].transform.position.x);
@@ -207,14 +210,51 @@ public class squadMemberScript : MonoBehaviour {
 					if(!checkVisibility(i)){
 						if((transform.position-objectInTile.transform.position).magnitude<=1.6f){//if you are within one square of the cloaked enemy
 							objectInTile.GetComponent<SpriteRenderer>().color = new Color(1f,1f,1f,0.2f);
-
+							
 						}
 					}
+					
+				}
+			}
+		}
+		foreach(GameObject players in GameObject.FindGameObjectsWithTag("player"))
+			players.SendMessage("checkFOVNotSelected");
+	}
 
+	public void checkFOVNotSelected(){
+		//hideAllWalls ();
+
+		if(gameManagerScript.selectedPlayer!= gameObject){
+		for (int i=0; i<22; i++) {
+			if(validTile(i)){//if it's in the range of the board size
+				
+				GameObject objectInTile = gameManagerScript.gridContents[fovX[i], fovY[i]];
+				if(objectInTile != null && objectInTile.tag == "wall"){//if it's a wall, check to see if you see it
+
+					if(checkVisibility(i)){
+
+					}
+					else{
+						//if(objectInTile.name == "enemyShotgun" || objectInTile.name == "enemySniper" || objectInTile.name == "enemyAssault"){
+
+						//	}
+						objectInTile.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 1f);
+					}
+				}
+				else if(objectInTile !=  null && objectInTile.tag == "cloaked")
+				{
+					if(!checkVisibility(i)){
+						if((transform.position-objectInTile.transform.position).magnitude<=1.6f){//if you are within one square of the cloaked enemy
+							objectInTile.GetComponent<SpriteRenderer>().color = new Color(1f,1f,1f,0.2f);
+							
+						}
+					}
+					
 				}
 			}
 		}
 	}
+							}
 
 	public void hideAllVisibilityTiles(){
 		for (int i=0; i<22; i++) {

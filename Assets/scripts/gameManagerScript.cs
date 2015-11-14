@@ -25,6 +25,8 @@ public class gameManagerScript : NetworkBehaviour {
 	public bool decoyPlacementMode = false;
 	public GameObject decoyPrefab;
 	public bool deathFlag = false;
+	public bool decoyFlag=false;
+	public GameObject[] decoyRefs = new GameObject[2];
 	//public GameObject[] wallObjects = new GameObject[20];
 	// Use this for initialization
 	void Start () {

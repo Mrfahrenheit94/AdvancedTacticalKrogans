@@ -65,6 +65,14 @@ public class playerScript : NetworkBehaviour {
 		gameManagerScriptRef.deathFlag = true;
 		CmdDeadPlayer (coords);
 	}
+	public void decoyPlacement(Vector2 coords){
+		gameManagerScriptRef.decoyFlag = true;
+		CmdDecoyPlacement (coords);
+	}
+	[Command]
+	public void CmdDecoyPlacement (Vector2 coords){
+		RpcDecoyPlacement (coords, "hello");
+	}
 	[Command]
 	public void CmdDeadPlayer (Vector2 coords){
 		RpcDeadPlayer (coords);
@@ -196,6 +204,26 @@ public class playerScript : NetworkBehaviour {
 			gameManagerScriptRef.selectedPlayer.SendMessage ("checkOOB");
 		}
 		gameManagerScriptRef.turretFlag = false;
+		
+	}
+	[ClientRpc]
+	public void RpcDecoyPlacement(Vector2 coords, string enemyType){
+		if (!gameManagerScriptRef.decoyFlag) {
+			if(gameManagerScriptRef.gridContents[(int) coords.x, (int) coords.y]==null)
+			{
+				gameManagerScriptRef.gridContents[(int) coords.x, (int) coords.y] = (GameObject) Instantiate (gameManagerScriptRef.enemyTurretPrefab, new Vector3 (coords.x, coords.y, 0), Quaternion.identity);
+				
+			}
+			else{
+				Destroy(gameManagerScriptRef.gridContents[(int) coords.x, (int) coords.y]);
+			}
+			
+		}
+		if (gameManagerScriptRef.selectedPlayer != null) {
+			
+			gameManagerScriptRef.selectedPlayer.SendMessage ("checkOOB");
+		}
+		gameManagerScriptRef.decoyFlag = false;
 		
 	}
 
